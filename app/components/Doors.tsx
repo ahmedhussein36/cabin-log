@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import { Label } from '@/components/ui/label'
 import { useVilla } from '../contexts/VillaContext'
 import { translations } from '../i18n/translations'
 import { ChoiceBox } from './ChoiceBox'
 import { IncrementalCounter } from './IncrementalCounter'
-import Image from 'next/image'
 
 export default function Doors() {
   const { lang, doors, setDoors, doorType, setDoorType } = useVilla();
@@ -16,7 +16,7 @@ export default function Doors() {
         <Label>{t.doorsCount}</Label>
         <IncrementalCounter value={doors} setValue={setDoors} min={1} max={3} />
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {Object.entries(t.doorTypes).map(([key, value] , index) => (
           <ChoiceBox
             key={key}
@@ -24,7 +24,7 @@ export default function Doors() {
             onClick={() => setDoorType(key)}
             className=' justify-center items-center flex flex-col'
           >
-            <Image src={`/assets/door-${index+1}.jpg`} alt={value} width={100} height={100} />
+            <img src={`/assets/door-${index+1}.jpg`} alt={value} width={100} height={100} />
             <p className="mt-2 text-center">{value}</p>
           </ChoiceBox>
         ))}

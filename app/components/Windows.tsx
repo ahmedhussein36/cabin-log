@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import { Label } from '@/components/ui/label'
 import { useVilla } from '../contexts/VillaContext'
 import { translations } from '../i18n/translations'
 import { ChoiceBox } from './ChoiceBox'
 import { IncrementalCounter } from './IncrementalCounter'
-import Image from 'next/image'
 
 export default function Windows() {
   const { lang, windows, setWindows, windowType, setWindowType } = useVilla();
@@ -16,7 +16,7 @@ export default function Windows() {
         <Label>{t.windowsCount}</Label>
         <IncrementalCounter value={windows} setValue={setWindows} min={1} max={8} />
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
         {Object.entries(t.windowTypes).map(([key, value], index) => (
           <ChoiceBox
             key={key}
@@ -24,7 +24,7 @@ export default function Windows() {
             onClick={() => setWindowType(key)}
             className=' justify-center items-center flex flex-col'
           >
-            <Image src={`/assets/win-${index + 1}.jpg`} alt={value} width={100} height={100} />
+            <img src={`/assets/win-${index + 1}.jpg`} alt={value} width={100} height={100} />
             <p className="mt-2 text-center">{value}</p>
           </ChoiceBox>
         ))}

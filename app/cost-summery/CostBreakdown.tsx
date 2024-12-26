@@ -46,7 +46,7 @@ export default function CostBreakdown() {
             additionalRoom === "yes" ? additionalRoomCount * 1000 : 0;
         const bathroomPrice =
             bathroomLocation === "outside" ? BATHROOM_AREA * METER_PRICE : 0;
-        const featuresPrice = additionalFeatures.length * 1000;
+        const featuresPrice = additionalFeatures.length * 0;
         return (
             basePrice +
             doorsPrice +
@@ -83,7 +83,7 @@ export default function CostBreakdown() {
             title: t.doors,
             items: [
                 {
-                    name: t.doorTypes[doorType],
+                    name: t.doorTypes[doorType as keyof typeof t.doorTypes],
                     quantity: doors,
                     unitPrice: 100,
                     totalPrice: doors * 500,
@@ -94,7 +94,9 @@ export default function CostBreakdown() {
             title: t.windows,
             items: [
                 {
-                    name: (t.windowTypes[windowType]),
+                    name: t.windowTypes[
+                        windowType as keyof typeof t.windowTypes
+                    ],
                     quantity: windows,
                     unitPrice: 100,
                     totalPrice: windows * 300,
@@ -136,7 +138,7 @@ export default function CostBreakdown() {
                   {
                       title: t.additionalFeaturesTitle,
                       items: additionalFeatures.map((feature) => ({
-                          name: t.features[feature],
+                          name: t.features[feature as keyof typeof t.features],
                           quantity: 1,
                           unitPrice: 0,
                           totalPrice: 0,
@@ -149,26 +151,26 @@ export default function CostBreakdown() {
     return (
         <VillaProvider>
             <div
-                className={`min-h-screen p-4 bg-background ${
+                className={` p-4 bg-background ${
                     lang === "ar" ? "rtl" : "ltr"
                 }`}
             >
-                <Card className="max-w-4xl mx-auto">
+                <Card className=" mx-auto">
                     <CardHeader className="bg-orange-800 rounded-t-lg">
                         <CardTitle className="text-2xl font-bold text-white">
                             {t.costBreakdown}
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6 p-6">
-                        <div className="grid md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+                    <CardContent className="space-y-6 px-6 py-2">
+                        <div className="grid md:grid-cols-2 gap-4 bg-gray-50 p-2 rounded-lg">
                             <div>
-                                <h3 className="font-semibold">
+                                {/* <h3 className="font-semibold">
                                     {t.projectDetails}
-                                </h3>
+                                </h3>*/}
                                 <p>
                                     {t.totalArea}: {totalAreaWithExtras} m²
                                 </p>
-                                <p>
+                                {/*  <p>
                                     {t.doorType}: {t.doorTypes[doorType] || "-"}
                                 </p>
                                 <p>
@@ -188,7 +190,7 @@ export default function CostBreakdown() {
                                             {additionalRoomCount}
                                         </p>
                                     </>
-                                )}
+                                )}*/}
                                 <p>
                                     {t.bathroomLocation}:{" "}
                                     {bathroomLocation === "inside"
@@ -208,7 +210,7 @@ export default function CostBreakdown() {
                                         {t.quantity}
                                     </TableHead>
                                     <TableHead className="w-1/6 text-center">
-                                        {t.unitPrice}
+                                        {t.price}
                                     </TableHead>
                                     <TableHead className="w-1/3 text-center">
                                         {t.total}

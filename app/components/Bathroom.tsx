@@ -9,7 +9,7 @@ export default function Bathroom() {
   return (
     <div className="space-y-4 p-4 rounded-lg border border-primary/20">
       <h3 className="font-semibold text-lg">{t.bathroom}</h3>
-      <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         <ChoiceBox
           selected={bathroomLocation === 'inside'}
           onClick={() => setBathroomLocation('inside')}
