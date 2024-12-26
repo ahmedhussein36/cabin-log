@@ -83,7 +83,7 @@ export default function CostBreakdown() {
             title: t.doors,
             items: [
                 {
-                    name: t.doorTypes[doorType] as string,
+                    name: t.doorTypes[doorType],
                     quantity: doors,
                     unitPrice: 100,
                     totalPrice: doors * 500,
